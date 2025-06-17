@@ -2,7 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
-const port = 3000;
+
+// 🟡 Usa porta do Render ou 3000 local
+const port = process.env.PORT || 3000;
 
 // Middleware para processar JSON e formulários
 app.use(express.json());
@@ -41,5 +43,5 @@ function salvarLogin(email, senha) {
 
 // Iniciar servidor
 app.listen(port, () => {
-  console.log(`🚀 Servidor rodando em: http://localhost:${port}`);
+  console.log(`🚀 Servidor rodando na porta ${port}`);
 });
